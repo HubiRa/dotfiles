@@ -1,0 +1,157 @@
+--return {
+--  {
+--    "stevearc/conform.nvim",
+--    -- event = 'BufWritePre', -- uncomment for format on save
+--    config = function()
+--      require "configs.conform"
+--    end,
+--  },
+--
+--  --These are some examples, uncomment them if you want to see them work!
+--  -- {
+--  --   "neovim/nvim-lspconfig",
+--  --   config = function()
+--  --     require("nvchad.configs.lspconfig").defaults()
+--  --     require "configs.lspconfig"
+--  --   end,
+--  -- },
+--  
+--  {
+--  	"williamboman/mason.nvim",
+--    config = function()
+--      require("mason").setup()
+--    end,
+--  	opts = {
+--  		ensure_installed = {
+--  			"lua-language-server", "stylua",
+--  			"html-lsp", "css-lsp" , "prettier"
+--  		},
+--  	},
+--  },
+--  
+--  {
+--  	"nvim-treesitter/nvim-treesitter",
+--  	opts = {
+--  		ensure_installed = {
+--  			"vim", "lua", "vimdoc",
+--       "html", "css"
+--  		},
+--  	},
+--  },
+--
+----  {"ellisonleao/glow.nvim", config = true, cmd = "Glow"},
+--
+--  
+--  -- {
+--  --   "iamcco/markdown-preview.nvim",
+--  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+--  --   build = "cd app && yarn install",
+--  --   init = function()
+--  --     vim.g.mkdp_filetypes = { "markdown" }
+--  --   end,
+--  --   ft = { "markdown" },
+--  -- },
+--
+--
+--  -- {
+--  --   "python-lsp/python-lsp-server",
+--  --   config = function()
+--  --     require('lspconfig').pylsp.setup({
+--  --       settings = {
+--  --         pylsp = {
+--  --           plugins = {
+--  --             pycodestyle = {
+--  --               ignore = {'W391'},
+--  --               maxLineLength = 100
+--  --             }
+--  --           }
+--  --         }
+--  --       }
+--  --     })
+--  --   end,
+--  -- }
+--  -- lazy.nvim
+--  -- {
+--  --   "folke/noice.nvim",
+--  --   event = "VeryLazy",
+--  --   opts = {
+--  --     -- add any options here
+--  --   },
+--  --   dependencies = {
+--  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+--  --     "MunifTanjim/nui.nvim",
+--  --     -- OPTIONAL:
+--  --     --   `nvim-notify` is only needed, if you want to use the notification view.
+--  --     --   If not available, we use `mini` as the fallback
+--  --     "rcarriga/nvim-notify",
+--  --     }
+--  -- },
+--
+--  -- {
+--  --   "NeogitOrg/neogit",
+--  --   dependencies = {
+--  --     "nvim-lua/plenary.nvim",         -- required
+--  --     "sindrets/diffview.nvim",        -- optional - Diff integration
+--  -- 
+--  --     -- Only one of these is needed, not both.
+--  --     "nvim-telescope/telescope.nvim", -- optional
+--  --     "ibhagwan/fzf-lua",              -- optional
+--  --   },
+--  --   config = true
+--  --   -- config = function()
+--  --   --   require("neogit").setup()
+--  --   -- end,
+--  -- },
+--
+--  -- Use your favorite package manager to install, for example in lazy.nvim
+--  --  Optionally, you can also install nvim-telescope/telescope.nvim to use some search functionality.
+--  -- {
+--  --   "sourcegraph/sg.nvim",
+--  --   dependencies = { "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]] },
+--  -- 
+--  --   -- If you have a recent version of lazy.nvim, you don't need to add this!
+--  --   build = "nvim -l build/init.lua",
+--  -- },
+--
+--  -- {
+--  --   "mfussenegger/nvim-dap-python",
+--  --   config = function()
+--  --     require("dap-python").setup("python")
+--  --   end,
+--  -- },
+--
+--  -- {
+--  --   "epwalsh/obsidian.nvim",
+--  --   version = "*",  -- recommended, use latest release instead of latest commit
+--  --   lazy = true,
+--  --   ft = { "markdown" } ,
+--  --   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+--  --   -- event = {
+--  --   --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+--  --   --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+--  --   --   -- refer to `:h file-pattern` for more examples
+--  --   --   "BufReadPre path/to/my-vault/*.md",
+--  --   --   "BufNewFile path/to/my-vault/*.md",
+--  --   -- },
+--  --   dependencies = {
+--  --     -- Required.
+--  --     "nvim-lua/plenary.nvim",
+--
+--  --     -- see below for full list of optional dependencies 👇
+--  --   },
+--  --   opts = {
+--  --     workspaces = {
+--  --       {
+--  --         name = "canva_research",
+--  --         path = "~/vaults/canv_research",
+--  --       },
+--  --       {
+--  --         name = "dl_notes",
+--  --         path = "~/vaults/dl_notes",
+--  --       },
+--  --     },
+--
+--  --     -- see below for full list of options 👇
+--  --   },
+--  -- },
+--}

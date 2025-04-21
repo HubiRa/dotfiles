@@ -1,0 +1,15 @@
+ --return {
+ --  'jalvesaq/zotcite',
+ --  dependencies = {
+ --      "nvim-treesitter/nvim-treesitter",
+ --      "jalvesaq/cmp-zotcite",
+ --  },
+ --  config = function ()
+ --      require("zotcite").setup({
+ --          -- your options here (see doc/zotcite.txt)
+ --      })
+ --      require("cmp").setup({
+ --      {name = 'cmp_zotcite'},
+ --    })
+ --  end
+ --}
