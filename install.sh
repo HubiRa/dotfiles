@@ -39,7 +39,8 @@ if [[ "$1" == "install" ]]; then
   maybe_install neovim neovim # might install outdated version on ubuntu
   maybe_install helix helix
   maybe_install zellij zellij cargo
-  maybe_install yazi yazi cargo
+  maybe_install yazi yazi-fm cargo
+  maybe_install yazi yazi-cli cargo
   maybe_install fzf fzf cargo
   maybe_install rg ripgrep cargo
   maybe_install dust du-dust cargo
