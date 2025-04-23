@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# NOTE: on e.g. a fresh ubuntu server installation we might need to install build essentials
+# NOTE: to avoid linker errors:
+# NOTE:       sudo apt install build-essential
+
 function maybe_install() {
   local cmd="$1"
   local pkg="$2"
@@ -33,7 +37,7 @@ if [[ "$1" == "install" ]]; then
 
   maybe_install stow stow
   maybe_install neovim neovim # might install outdated version on ubuntu
-  maybe_install helix helix cargo
+  maybe_install helix helix
   maybe_install zellij zellij cargo
   maybe_install yazi yazi cargo
   maybe_install fzf fzf cargo
