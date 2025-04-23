@@ -50,6 +50,18 @@ if [[ "$1" == "install" ]]; then
 fi
 
 
+# Add cargo bin to PATH
+if [ -n "$ZSH_VERSION" ]; then
+    SHELL_RC="$HOME/.zshrc"
+elif [ -n "$BASH_VERSION" ]; then
+    SHELL_RC="$HOME/.bashrc"
+else
+    SHELL_RC="$HOME/.profile"
+fi
+CARGO_LINE='export PATH="$HOME/.cargo/bin:$PATH"'
+grep -qxF "$CARGO_LINE" "$SHELL_RC" 2>/dev/null || echo "$CARGO_LINE" >> "$SHELL_RC"
+
+
 
 mkdir -p "$HOME/.config"
 stow -v --target "$HOME" nvim
