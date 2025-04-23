@@ -36,17 +36,17 @@ if [[ "$1" == "install" ]]; then
   fi
 
   maybe_install stow stow
-  maybe_install neovim neovim # might install outdated version on ubuntu
+  maybe_install neovim neovim # installs outdated version on ubuntu: FIXME
   maybe_install helix helix
   maybe_install zellij zellij cargo
   maybe_install yazi yazi-fm cargo
   maybe_install yazi yazi-cli cargo
-  maybe_install fzf fzf cargo
+  maybe_install fzf fzf
   maybe_install rg ripgrep cargo
   maybe_install dust du-dust cargo
   maybe_install gh gh
-  maybe_install lazygit lazygit # wont work under linux
-  maybe_install gitui gitui # if lazygit can't be installed
+  maybe_install lazygit lazygit 
+  # maybe_install gitui gitui # if lazygit can't be installed
 fi
 
 
