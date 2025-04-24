@@ -35,6 +35,7 @@ if [[ "$1" == "install" ]]; then
     export PATH="$HOME/.cargo/bin:$PATH"
   fi
 
+  # NOTE: installation over cargo should be avoided and onlz be used if not in brew or apt
   maybe_install stow stow
   maybe_install neovim neovim # installs outdated version on ubuntu: FIXME
   maybe_install helix helix
@@ -42,11 +43,11 @@ if [[ "$1" == "install" ]]; then
   maybe_install yazi yazi-fm cargo
   maybe_install yazi yazi-cli cargo
   maybe_install fzf fzf
-  maybe_install rg ripgrep cargo
+  maybe_install rg ripgrep
   maybe_install dust du-dust cargo
   maybe_install gh gh
-  maybe_install lazygit lazygit 
-  # maybe_install gitui gitui # if lazygit can't be installed
+  # maybe_install lazygit lazygit 
+  maybe_install gitui gitui # if lazygit can't be installed
 fi
 
 
