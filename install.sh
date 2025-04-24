@@ -47,7 +47,7 @@ if [[ "$1" == "install" ]]; then
   maybe_install dust du-dust cargo
   maybe_install gh gh
   # maybe_install lazygit lazygit 
-  maybe_install gitui gitui # if lazygit can't be installed
+  maybe_install gitui gitui cargo # if lazygit can't be installed
 fi
 
 
