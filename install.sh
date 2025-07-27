@@ -7,9 +7,9 @@
 function maybe_install() {
   local cmd="$1"
   local pkg="$2"
-  local method="$3"  # "cargo" or empty
+  local method="$3" # "cargo" or empty
 
-  if ! hash "$cmd" > /dev/null 2>&1; then
+  if ! hash "$cmd" >/dev/null 2>&1; then
     echo "Installing $cmd..."
 
     if [[ "$method" == "cargo" && -n "$(command -v cargo)" ]]; then
@@ -27,18 +27,29 @@ function maybe_install() {
   fi
 }
 
-
 if [[ "$1" == "install" ]]; then
-  if ! hash cargo > /dev/null 2>&1; then
+  if ! hash cargo >/dev/null 2>&1; then
     echo "Rust (cargo) not found. Installing via rustup..."
     curl https://sh.rustup.rs -sSf | sh -s -- -y
     export PATH="$HOME/.cargo/bin:$PATH"
+
+    # Add cargo bin to shell RC file immediately so it's available for subsequent tools
+    if [ -n "$ZSH_VERSION" ]; then
+      SHELL_RC="$HOME/.zshrc"
+    elif [ -n "$BASH_VERSION" ]; then
+      SHELL_RC="$HOME/.bashrc"
+    else
+      SHELL_RC="$HOME/.profile"
+    fi
+    CARGO_PATH='export PATH="$HOME/.cargo/bin:$PATH"'
+    grep -qxF "$CARGO_PATH" "$SHELL_RC" 2>/dev/null || echo "$CARGO_PATH" >>"$SHELL_RC"
   fi
 
-  # NOTE: installation over cargo should be avoided and onlz be used if not in brew or apt
+  # NOTE: 1) installation over cargo should be avoided and only be used if not in brew or apt
+  # NOTE: 2) probably categorize into minimal and extended apps
   maybe_install stow stow
   maybe_install neovim neovim # installs outdated version on ubuntu: FIXME
-  maybe_install helix helix
+  maybe_install helix helix   # does not work on ubuntu, possibly use snap
   maybe_install zellij zellij cargo
   maybe_install yazi yazi-fm cargo
   maybe_install yazi yazi-cli cargo
@@ -46,23 +57,9 @@ if [[ "$1" == "install" ]]; then
   maybe_install rg ripgrep
   maybe_install dust du-dust cargo
   maybe_install gh gh
-  # maybe_install lazygit lazygit 
+  # maybe_install lazygit lazygit
   maybe_install gitui gitui cargo # if lazygit can't be installed
 fi
-
-
-# Add cargo bin to PATH
-if [ -n "$ZSH_VERSION" ]; then
-    SHELL_RC="$HOME/.zshrc"
-elif [ -n "$BASH_VERSION" ]; then
-    SHELL_RC="$HOME/.bashrc"
-else
-    SHELL_RC="$HOME/.profile"
-fi
-CARGO_LINE='export PATH="$HOME/.cargo/bin:$PATH"'
-grep -qxF "$CARGO_LINE" "$SHELL_RC" 2>/dev/null || echo "$CARGO_LINE" >> "$SHELL_RC"
-
-
 
 mkdir -p "$HOME/.config"
 stow -v --target "$HOME" nvim
