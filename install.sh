@@ -1,69 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
-# NOTE: on e.g. a fresh ubuntu server installation we might need to install build essentials
-# NOTE: to avoid linker errors:
-# NOTE:       sudo apt install build-essential
-
-function maybe_install() {
-  local cmd="$1"
-  local pkg="$2"
-  local method="$3" # "cargo" or empty
-
-  if ! hash "$cmd" >/dev/null 2>&1; then
-    echo "Installing $cmd..."
-
-    if [[ "$method" == "cargo" && -n "$(command -v cargo)" ]]; then
-      cargo install "$pkg" --locked
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-      brew install "$pkg"
-    elif [[ -f /etc/debian_version ]]; then
-      sudo apt-get update
-      sudo apt-get install -y "$pkg"
-    else
-      echo "Warning: No supported install method for $cmd. Skipping."
-    fi
-  else
-    echo "$cmd is already installed."
-  fi
-}
-
-if [[ "$1" == "install" ]]; then
-  if ! hash cargo >/dev/null 2>&1; then
-    echo "Rust (cargo) not found. Installing via rustup..."
-    curl https://sh.rustup.rs -sSf | sh -s -- -y
-    export PATH="$HOME/.cargo/bin:$PATH"
-
-    # Add cargo bin to shell RC file immediately so it's available for subsequent tools
-    if [ -n "$ZSH_VERSION" ]; then
-      SHELL_RC="$HOME/.zshrc"
-    elif [ -n "$BASH_VERSION" ]; then
-      SHELL_RC="$HOME/.bashrc"
-    else
-      SHELL_RC="$HOME/.profile"
-    fi
-    CARGO_PATH='export PATH="$HOME/.cargo/bin:$PATH"'
-    grep -qxF "$CARGO_PATH" "$SHELL_RC" 2>/dev/null || echo "$CARGO_PATH" >>"$SHELL_RC"
-  fi
-
-  # NOTE: 1) installation over cargo should be avoided and only be used if not in brew or apt
-  # NOTE: 2) probably categorize into minimal and extended apps
-  maybe_install stow stow
-  maybe_install neovim neovim # installs outdated version on ubuntu: FIXME
-  maybe_install helix helix   # does not work on ubuntu, possibly use snap
-  maybe_install zellij zellij cargo
-  maybe_install yazi yazi-fm cargo
-  maybe_install yazi yazi-cli cargo
-  maybe_install fzf fzf
-  maybe_install rg ripgrep
-  maybe_install dust du-dust cargo
-  maybe_install gh gh
-  # maybe_install lazygit lazygit
-  maybe_install gitui gitui cargo # if lazygit can't be installed
+if ! command -v nix &>/dev/null; then
+  echo "[*] Nix not found, installing…"
+  sh <(curl -L https://nixos.org/nix/install) --yes
+  echo "[*] Nix installed. Open a new terminal, then run: nix develop"
+else
+  echo "[*] Nix already installed. Just run: nix develop"
 fi
-
-mkdir -p "$HOME/.config"
-stow -v --target "$HOME" nvim
-stow -v --target "$HOME" helix
-stow -v --target "$HOME" starship
-stow -v --target "$HOME" zellij
-stow -v --target "$HOME" yazi

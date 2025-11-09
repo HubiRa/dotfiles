@@ -1,12 +1,12 @@
 return {
-  {"AlessandroYorba/Sierra"},
-  {"shaunsingh/nord.nvim"},
-  {"savq/melange-nvim"},
+  { "AlessandroYorba/Sierra" },
+  { "shaunsingh/nord.nvim" },
+  { "savq/melange-nvim" },
+  { "HubiRa/kaolin-dark.nvim" },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nord",
+      colorscheme = "kaolin-dark",
     },
-  }
-
+  },
 }
