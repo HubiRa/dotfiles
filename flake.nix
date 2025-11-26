@@ -31,26 +31,33 @@
             lazyjj
             lazygit
             fish
+            nushell
             zoxide
             uv
+            eza
+            carapace
+	    starship
           ] ++ extraInputs;
 
           shellHook = ''
-            # This runs in bash/zsh: POSIX only!
-            if [ -z "$FISH_VERSION" ]; then
-              exec fish
-            fi
-
-            echo "dotfiles dev shell (${system})"
-            alias v="nvim"
-            alias y="yazi"
-            if command -q zoxide
-              eval (zoxide init fish)
-            end
-          
             export XDG_DATA_HOME=$HOME/.local/share
             export XDG_CONFIG_HOME=$HOME/.config
             export XDG_CACHE_HOME=$HOME/.cache
+
+            # Make sure $SHELL points at nu if available
+            if command -v nu >/dev/null 2>&1; then
+              export SHELL=$(command -v nu)
+              exec "$SHELL"
+            else
+              echo "nushell (nu) not found — staying in $SHELL"
+            fi
+
+            # echo "dotfiles dev shell (${system})"
+            # alias v="nvim"
+            # alias y="yazi"
+            # if command -q zoxide
+            #   eval (zoxide init fish)
+            # end
           '' + extraShellHook;
         };
 
