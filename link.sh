@@ -12,7 +12,7 @@ stow zellij -t ~
 stow fish -t ~
 stow yazi -t ~
 stow nushell -t ~
-stow cursor -t ~
+# stow cursor -t ~
 stow starship -t ~
 
 echo "Dotfiles linked successfully!"

@@ -27,6 +27,7 @@
             gh
             rustc
             cargo
+            git
             jujutsu
             lazyjj
             lazygit
