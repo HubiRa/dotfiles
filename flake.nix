@@ -37,7 +37,8 @@
             uv
             eza
             carapace
-	    starship
+	          starship
+            rustup
           ] ++ extraInputs;
 
           shellHook = ''
