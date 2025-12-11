@@ -1,13 +1,18 @@
 return {
   "NeogitOrg/neogit",
-  lazy = false,
+  lazy = true,
   dependencies = {
-    "nvim-lua/plenary.nvim",         -- required
-    "sindrets/diffview.nvim",        -- optional - Diff integration
+    "nvim-lua/plenary.nvim", -- required
+    "sindrets/diffview.nvim", -- optional - Diff integration
 
-    -- Only one of these is needed, not both.
+    -- Only one of these is needed.
     "nvim-telescope/telescope.nvim", -- optional
     -- "ibhagwan/fzf-lua",              -- optional
+    -- "nvim-mini/mini.pick",           -- optional
+    -- "folke/snacks.nvim",             -- optional
   },
-  config = true
+  cmd = "Neogit",
+  keys = {
+    { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
+  },
 }

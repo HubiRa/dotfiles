@@ -1,6 +1,7 @@
 alias ll = ls -l
 alias v = nvim
 alias y = yazi
+alias lt = eza --tree --level=2 --long --icons --git
 
 source ~/.zoxide.nu
 $env.config.edit_mode = 'vi'
