@@ -15,4 +15,6 @@ source $"($nu.cache-dir)/carapace.nu"
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
+# atuin
+source ~/.local/share/atuin/init.nu
 

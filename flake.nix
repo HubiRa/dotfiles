@@ -39,17 +39,21 @@
             carapace
 	          starship
             rustup
+            atuin
           ] ++ extraInputs;
 
           shellHook = ''
             export XDG_DATA_HOME=$HOME/.local/share
             export XDG_CONFIG_HOME=$HOME/.config
             export XDG_CACHE_HOME=$HOME/.cache
+            
+            mkdir -p ~/.local/share/atuin/
 
             # Make sure $SHELL points at nu if available
             if command -v nu >/dev/null 2>&1; then
               export SHELL=$(command -v nu)
               exec "$SHELL"
+              atuin init nu | save ~/.local/share/atuin/init.nu
             else
               echo "nushell (nu) not found — staying in $SHELL"
             fi
