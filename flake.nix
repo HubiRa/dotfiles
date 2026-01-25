@@ -20,6 +20,7 @@
             neovim
             helix
             zellij
+            tmux
             yazi
             fzf
             ripgrep
