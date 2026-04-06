@@ -41,6 +41,8 @@
 	          starship
             rustup
             atuin
+            tree-sitter
+            gcc  # needed for compiling treesitter parsers
           ] ++ extraInputs;
 
           shellHook = ''

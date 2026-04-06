@@ -1,14 +1,13 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-config.color_scheme = 'Bamboo Multiplex'
+config.color_scheme = "Bamboo Multiplex"
 config.window_decorations = "RESIZE"
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.inactive_pane_hsb = {
-		brightness = 0.7,
+	brightness = 0.7,
 }
-
 
 config.colors = {
 	foreground = "#CBE0F0",
@@ -55,5 +54,24 @@ config.macos_window_background_blur = 100
 --      hsb = { brightness = 0.3 },
 --    },
 -- }
+
+local act = wezterm.action
+
+config.keys = {
+	-- Rebind OPT-Left, OPT-Right as ALT-b, ALT-f respectively to match Terminal.app behavior
+	{
+		key = "LeftArrow",
+		mods = "OPT",
+		action = act.SendKey({
+			key = "b",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "RightArrow",
+		mods = "OPT",
+		action = act.SendKey({ key = "f", mods = "ALT" }),
+	},
+}
 
 return config
