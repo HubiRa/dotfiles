@@ -36,6 +36,22 @@ local function transparent_highlights()
     "CursorLine",
     "EndOfBuffer",
     "WinSeparator",
+    -- Floating windows
+    "NormalFloat",
+    "FloatBorder",
+    "FloatTitle",
+    -- Popup menu
+    "Pmenu",
+    "PmenuSbar",
+    -- Telescope/picker
+    "TelescopeNormal",
+    "TelescopeBorder",
+    "TelescopePromptNormal",
+    "TelescopePromptBorder",
+    "TelescopeResultsNormal",
+    "TelescopeResultsBorder",
+    "TelescopePreviewNormal",
+    "TelescopePreviewBorder",
   }
 
   for _, group in ipairs(groups) do
@@ -51,6 +67,12 @@ local function transparent_highlights()
   vim.api.nvim_set_hl(0, "Visual", { bg = "#aa8788", fg = "#191a22" })
   vim.api.nvim_set_hl(0, "WinSeparator", { bg = "none", fg = "#4c566a" })
   vim.api.nvim_set_hl(0, "ZenBg", { ctermbg = 0 })
+
+  -- Snacks/fzf-lua picker transparency
+  vim.api.nvim_set_hl(0, "FzfLuaNormal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "FzfLuaBorder", { bg = "none" })
+  vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "FzfLuaPreviewBorder", { bg = "none" })
 end
 
 transparent_highlights()
