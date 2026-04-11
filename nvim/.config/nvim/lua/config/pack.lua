@@ -40,14 +40,12 @@ vim.pack.add({
   -- Git
   gh("NeogitOrg/neogit"),
   gh("sindrets/diffview.nvim"),
-  gh("kdheepak/lazygit.nvim"),
   -- UI
   gh("nvim-lualine/lualine.nvim"),
   gh("folke/snacks.nvim"),
   gh("folke/which-key.nvim"),
   gh("HubiRa/kaolin-dark.nvim"),
   gh("folke/todo-comments.nvim"),
-  gh("folke/zen-mode.nvim"),
   -- Markdown
   gh("OXY2DEV/markview.nvim"),
   -- Images
@@ -59,9 +57,27 @@ vim.pack.add({
   -- Build/dispatch
   gh("tpope/vim-dispatch"),
 }, {
-  load = true,
+  load = false,
   confirm = false,
 })
 
--- Force load all optional packages into runtimepath
-vim.cmd("packloadall")
+for _, plugin in ipairs({
+  "FixCursorHold.nvim",
+  "conform.nvim",
+  "fzf-lua",
+  "gitsigns.nvim",
+  "kaolin-dark.nvim",
+  "lualine.nvim",
+  "mason.nvim",
+  "nvim-lspconfig",
+  "nvim-surround",
+  "nvim-treesitter",
+  "nvim-web-devicons",
+  "rustaceanvim",
+  "snacks.nvim",
+  "todo-comments.nvim",
+  "which-key.nvim",
+  "yazi.nvim",
+}) do
+  pcall(vim.cmd.packadd, plugin)
+end

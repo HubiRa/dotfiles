@@ -1,11 +1,9 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-mkdir -p "$HOME/.config"
-stow -v --target "$HOME" nvim
-stow -v --target "$HOME" helix
-stow -v --target "$HOME" starship
-stow -v --target "$HOME" zellij
-stow -v --target "$HOME" yazi
-stow -v --target "$HOME" fish
+"$(cd "$(dirname "$0")" && pwd)/link.sh"
+
+if [ -d "$(cd "$(dirname "$0")" && pwd)/commands" ]; then
+  "$(cd "$(dirname "$0")" && pwd)/install_commands.sh"
+fi

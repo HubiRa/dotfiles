@@ -1,27 +1,34 @@
-# nvim2
+# nvim
 
-A fresh Neovim 0.12+ config for trying a more native setup.
+Neovim 0.12+ config using core APIs and `vim.pack`.
 
 ## Goals
 
 - use `vim.pack` instead of `lazy.nvim`
 - use Neovim 0.12 LSP APIs (`vim.lsp.config()` / `vim.lsp.enable()`)
-- use the new built-in `ui2`
-- keep only a small set of high-value plugins
+- keep the config relatively small and native-first
 
 ## Usage
 
-After stowing `nvim2`, start it with:
+This package is intended to be stowed as `nvim/`, which creates:
+
+- config: `~/.config/nvim`
+- data: `~/.local/share/nvim`
+- state/cache: standard `nvim` paths
+
+Typical setup from the repo root:
 
 ```bash
-NVIM_APPNAME=nvim2 nvim
+./install.sh
+nix develop
+nvim
 ```
 
-This keeps it separate from your current config:
+If you want Nushell explicitly inside the dev shell:
 
-- config: `~/.config/nvim2`
-- data: `~/.local/share/nvim2`
-- state/cache: separate from `nvim`
+```bash
+nix develop -c nu
+```
 
 ## Requirements
 
@@ -29,11 +36,12 @@ This keeps it separate from your current config:
 - `git`
 - `ripgrep`
 - `python3`
-- optional: `yazi`
+- optional: `yazi`, `lazygit`, `debugpy`
 
 ## Notes
 
 - plugins are managed by `vim.pack`
-- Mason is used only to install external tools, not to drive LSP wiring
+- plugin revisions are pinned in `nvim/.config/nvim/nvim-pack-lock.json`
 - `nvim-lspconfig` supplies server configs, while Neovim core enables them
-- this config intentionally uses Neovim's native statusline/diagnostics/completion stack as much as possible
+- Mason is available for manual tool installation; use `:Mason` or `:MasonInstallCore`
+- the surrounding shell/tool environment is provided by `flake.nix`

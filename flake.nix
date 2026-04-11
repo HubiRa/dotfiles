@@ -46,27 +46,27 @@
           ] ++ extraInputs;
 
           shellHook = ''
-            export XDG_DATA_HOME=$HOME/.local/share
-            export XDG_CONFIG_HOME=$HOME/.config
-            export XDG_CACHE_HOME=$HOME/.cache
-            
-            mkdir -p ~/.local/share/atuin/
+            export XDG_DATA_HOME="$HOME/.local/share"
+            export XDG_CONFIG_HOME="$HOME/.config"
+            export XDG_CACHE_HOME="$HOME/.cache"
 
-            # Make sure $SHELL points at nu if available
-            if command -v nu >/dev/null 2>&1; then
-              export SHELL=$(command -v nu)
-              exec "$SHELL"
-              atuin init nu | save ~/.local/share/atuin/init.nu
-            else
-              echo "nushell (nu) not found — staying in $SHELL"
+            mkdir -p "$XDG_DATA_HOME/atuin" "$XDG_CACHE_HOME"
+
+            if command -v atuin >/dev/null 2>&1 && command -v nu >/dev/null 2>&1; then
+              atuin init nu > "$XDG_DATA_HOME/atuin/init.nu"
             fi
 
-            # echo "dotfiles dev shell (${system})"
-            # alias v="nvim"
-            # alias y="yazi"
-            # if command -q zoxide
-            #   eval (zoxide init fish)
-            # end
+            echo "dotfiles dev shell (${system})"
+
+            # Enter nushell automatically for interactive terminals only.
+            # Keep `nix develop -c ...` scriptable.
+            if command -v nu >/dev/null 2>&1 \
+              && [ -t 0 ] \
+              && [ -t 1 ] \
+              && [ -z "''${PI_IN_NU_SHELL-}" ]; then
+              export PI_IN_NU_SHELL=1
+              exec nu
+            fi
           '' + extraShellHook;
         };
 

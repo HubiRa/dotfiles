@@ -1,6 +1,9 @@
-pcall(function()
-  require("vim._core.ui2").enable()
-end)
+-- ui2 is still internal/private in Neovim 0.12, so keep it opt-in for now.
+if vim.g.enable_ui2 == true then
+  pcall(function()
+    require("vim._core.ui2").enable()
+  end)
+end
 
 local ok, _ = pcall(vim.cmd.colorscheme, "kaolin-dark")
 if not ok then
@@ -52,6 +55,22 @@ local function transparent_highlights()
     "TelescopeResultsBorder",
     "TelescopePreviewNormal",
     "TelescopePreviewBorder",
+    -- Snacks picker
+    "SnacksPicker",
+    "SnacksPickerBorder",
+    "SnacksPickerTitle",
+    "SnacksPickerBox",
+    "SnacksPickerInput",
+    "SnacksPickerInputBorder",
+    "SnacksPickerInputTitle",
+    "SnacksPickerList",
+    "SnacksPickerListBorder",
+    "SnacksPickerListTitle",
+    "SnacksPickerPreview",
+    "SnacksPickerPreviewBorder",
+    "SnacksPickerPreviewTitle",
+    "SnacksPickerPickWin",
+    "SnacksPickerPickWinCurrent",
   }
 
   for _, group in ipairs(groups) do

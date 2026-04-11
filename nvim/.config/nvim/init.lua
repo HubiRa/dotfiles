@@ -24,9 +24,9 @@ vim.g.rustaceanvim = {
 }
 
 require("config.options")
+require("config.pack")
 require("config.ui")
 require("config.keymaps")
-require("config.pack")
 require("config.plugins")
 require("config.lsp")
 require("config.autocmds")

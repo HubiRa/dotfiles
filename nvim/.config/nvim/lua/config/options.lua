@@ -25,6 +25,14 @@ vim.o.autocomplete = true
 vim.o.exrc = true
 vim.o.shelltemp = false
 
+vim.cmd("syntax enable")
+
+local nu = vim.fn.exepath("nu")
+if nu ~= "" then
+  vim.o.shell = nu
+  vim.o.shellcmdflag = "-c"
+end
+
 vim.opt.fillchars = {
   eob = " ",
   vert = "│",

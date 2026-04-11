@@ -88,9 +88,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
 
-    -- Disable semantic tokens (let treesitter handle highlighting)
-    client.server_capabilities.semanticTokensProvider = nil
-
     if client:supports_method("textDocument/completion") then
       vim.lsp.completion.enable(true, client.id, ev.buf, {
         autotrigger = true,
@@ -120,15 +117,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.inline_completion.enable(true, { client_id = client.id })
     end
 
-    if not client:supports_method("textDocument/willSaveWaitUntil")
-      and client:supports_method("textDocument/formatting") then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = lsp_group,
-        buffer = ev.buf,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 1000 })
-        end,
-      })
-    end
+    -- Formatting on save is handled by conform.nvim.
   end,
 })

@@ -11,7 +11,7 @@ cursor-line = "error"
 
 [editor.auto-save]
 focus-lost = true
-after-delaly.enable = true
+after-delay.enable = true
 
 
 [editor.cursor-shape]
