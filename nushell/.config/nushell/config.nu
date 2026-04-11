@@ -12,3 +12,5 @@ if (which starship | is-not-empty) {
   starship init nu | save -f ($starship_autoload_dir | path join "starship.nu")
 }
 
+source ~/.local/share/atuin/init.nu
+

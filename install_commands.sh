@@ -31,11 +31,19 @@ echo ""
 PARENT_PID=$PPID
 PARENT_SHELL=$(ps -p "$PARENT_PID" -o comm= 2>/dev/null || echo "")
 
+# Extract the shell executable name without relying on platform-specific basename behavior.
+resolve_shell_name() {
+  local shell_path="$1"
+  shell_path="${shell_path##*/}"
+  shell_path="${shell_path#-}"
+  printf '%s\n' "$shell_path"
+}
+
 # If we got a shell name, use it; otherwise fall back to $SHELL
 if [ -n "$PARENT_SHELL" ]; then
-  CURRENT_SHELL="$(basename "$PARENT_SHELL")"
+  CURRENT_SHELL="$(resolve_shell_name "$PARENT_SHELL")"
 else
-  CURRENT_SHELL="$(basename "$SHELL")"
+  CURRENT_SHELL="$(resolve_shell_name "${SHELL:-}")"
 fi
 
 echo "Detected shell: ${CURRENT_SHELL}"

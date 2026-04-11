@@ -27,3 +27,4 @@ if (which atuin | is-not-empty) {
   atuin init nu | save -f ~/.local/share/atuin/init.nu
 }
 
+$env.PATH = ($env.PATH | prepend "/Users/hubi/dotfiles/commands")
