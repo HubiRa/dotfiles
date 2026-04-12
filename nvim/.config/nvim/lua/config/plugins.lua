@@ -223,6 +223,23 @@ pcall(function()
 end)
 
 pcall(function()
+  require("oil").setup({
+    default_file_explorer = false,
+    delete_to_trash = true,
+    skip_confirm_for_simple_edits = true,
+    keymaps = {
+      ["<C-h>"] = false,
+      ["<C-l>"] = false,
+    },
+    view_options = {
+      show_hidden = true,
+    },
+  })
+
+  vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
+end)
+
+pcall(function()
   require("yazi").setup({
     open_for_directories = false,
     keymaps = {

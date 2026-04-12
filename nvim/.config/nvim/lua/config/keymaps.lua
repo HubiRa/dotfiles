@@ -9,11 +9,9 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
--- Also allow Ctrl+hjkl from terminal mode to switch splits
-vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Go to left window" })
-vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Go to lower window" })
-vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Go to upper window" })
-vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Go to right window" })
+-- In terminal input mode, let Ctrl+L reach the shell for redraw/clear.
+-- Window navigation remains available after leaving terminal mode.
+vim.keymap.set("t", "<C-l>", "<C-l>", { desc = "Clear terminal" })
 
 -- LSP
 vim.keymap.set("i", "<C-Space>", function()
