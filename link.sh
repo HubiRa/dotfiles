@@ -10,7 +10,6 @@ PACKAGES=(
   helix
   zellij
   fish
-  nushell
   yazi
   starship
   wezterm

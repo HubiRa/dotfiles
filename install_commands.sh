@@ -81,16 +81,16 @@ case "${CURRENT_SHELL}" in
     
   fish)
     RC_FILE="${HOME}/.config/fish/config.fish"
-    LINE="set -gx PATH ${COMMANDS_DIR} \$PATH"
+    LINE="fish_add_path --global ${COMMANDS_DIR}"
     
     # Create config directory if it doesn't exist
     mkdir -p "$(dirname "${RC_FILE}")"
     
-    if ! grep -qF "set -gx PATH ${COMMANDS_DIR}" "${RC_FILE}" 2>/dev/null; then
+    if grep -qF "${COMMANDS_DIR}" "${RC_FILE}" 2>/dev/null || grep -qF 'commands_dir' "${RC_FILE}" 2>/dev/null; then
+      echo "PATH already includes ${COMMANDS_DIR}"
+    else
       echo "${LINE}" >>"${RC_FILE}"
       echo "Added ${COMMANDS_DIR} to PATH in ${RC_FILE}"
-    else
-      echo "PATH already includes ${COMMANDS_DIR}"
     fi
     echo ""
     echo "Done! To use the commands in this shell, run:"

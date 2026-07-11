@@ -21,4 +21,4 @@ fi
 
 echo "[*] Done"
 echo "[*] Enter the dev shell with: nix develop"
-echo "[*] Or start Nushell explicitly with: nix develop -c nu"
+echo "[*] Or start Fish explicitly with: nix develop -c fish"

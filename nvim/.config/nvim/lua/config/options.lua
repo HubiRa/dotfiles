@@ -27,9 +27,9 @@ vim.o.shelltemp = false
 
 vim.cmd("syntax enable")
 
-local nu = vim.fn.exepath("nu")
-if nu ~= "" then
-  vim.o.shell = nu
+local fish = vim.fn.exepath("fish")
+if fish ~= "" then
+  vim.o.shell = fish
   vim.o.shellcmdflag = "-c"
 end
 

@@ -24,10 +24,10 @@ nix develop
 nvim
 ```
 
-If you want Nushell explicitly inside the dev shell:
+If you want Fish explicitly inside the dev shell:
 
 ```bash
-nix develop -c nu
+nix develop -c fish
 ```
 
 ## Requirements
